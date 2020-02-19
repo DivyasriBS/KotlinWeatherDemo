@@ -20,6 +20,7 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
 import android.widget.Toast
 import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
 import com.divyasri.kotlinweather.Models.WeatherData
 import com.divyasri.kotlinweather.R
 import com.divyasri.kotlinweather.utils.WeatherWorker
@@ -82,6 +83,7 @@ class HomeActivity : AppCompatActivity(), HomeContract.View {
             val myWorkRequest =
                 PeriodicWorkRequest.Builder(WeatherWorker::class.java, 120, TimeUnit.MINUTES)
                     .build()
+            WorkManager.getInstance().enqueue(myWorkRequest)
         }
     }
 
